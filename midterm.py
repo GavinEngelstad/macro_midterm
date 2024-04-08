@@ -19,7 +19,7 @@ Parameters can all be updated to fit.
 # parameters
 z_ss = 1
 beta = 0.9
-nu = 0.85
+nu = 0
 phi = 0.5
 delta = 0.1
 alpha = 0.36
@@ -36,7 +36,6 @@ def solve(z_ss,
           rho
           ):
     ## Steady States
-    z_ss = 1
     r_ss = 1/beta - 1 + delta
     K_ss = z_ss**(1/(1-alpha))*(1-alpha)*(1 - beta*nu)/(phi*(1-nu)*(r_ss/alpha-delta))*(r_ss/alpha)**(alpha/(alpha-1))
     Y_ss = r_ss/alpha * K_ss
