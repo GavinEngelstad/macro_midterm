@@ -66,21 +66,22 @@
 
 % --- Title ---
 \title{Midterm}
-\author{Gavin Engelstad et al.}
+\author{Tina Chen, Michelle Dong, Gavin Engelstad, Giovanny Martínez, and Samina Stack}
 \date{\today}
 \newcommand{\theclass}{Macro Modeling}
-\newcommand{\theclassnum}{ECON 472}
+\newcommand{\theclassnum}{ECON 471/472}
 
 
 % --- Document ---
 \begin{document}
 \noindent
-{\theclass \hfill  \theauthor}\break
-{\tiny \hspace*{\fill} \emph{Fix this}} \break
-{\theclassnum  \hfill \thedate}
+{\theclassnum \hfill  \theclass}\break
+% {\tiny \hspace*{\fill} \emph{Fix this}} \break
 
 \begin{center}
 	{\huge \textbf{\thetitle}}
+ 
+    \theauthor
 \end{center}
 
 \section{Habit Persistence}
@@ -120,8 +121,11 @@ where $\rho \in (0,1)$, $z_{ss}$ is the steady-state level of the productivity s
     What's the (economic) effect of habit persistence (alternatively, of parameter $\nu$)? In one or two paragraphs, provide an intuitive explanation and comment on whether you believe including a specification like this in a DSGE model makes sense. You don't have to do any analytical derivation, but be sure to thoroughly justify your answer. [10]
 \end{exercise}
 
+
 \begin{solution}
-    I hate writing. I'll do this later.
+   The parameter $\nu$, indicative of the strength of habit formation, establishes a direct link between past consumption and current utility, suggesting that previous consumption choices negatively impact present consumption levels and overall well-being. Higher $\nu$ causes households to choose higher consumption and less leisure since there are higher marginal returns to consumption, so consumers wish to smooth both the level and the change in consumption. This is what we call habit formation.  
+
+   We feel that including habit persistence in a DSGE model does make sense given the role past consumption can play in our future consumption decisions.  Additionally, different literature has empirically and theoretically supported habit formation. In finance, habit formation is included to solve the equity premium puzzle, integrating habit formation into the discourse on stock and bond return disparities.\footnote{Constantinides, G. M. (1990). Habit Formation: A Resolution of the Equity Premium Puzzle. Journal of Political Economy, 98(3), 519–543. http://www.jstor.org/stable/2937698}. In the growth literature, habit formation challenges the permanent income hypothesis, and suggests that ``habits imply a sluggish response of consumption to income shocks''\footnote{See Fuhrer, Jeffrey C. ``Habit Formation in Consumption and Its Implications for Monetary-Policy Models.'' The American Economic Review, vol. 90, no. 3, 2000, pp. 367–90. JSTOR, http://www.jstor.org/stable/117334. Accessed 31 Mar. 2024.}. The effect of habit formation on monetary policy is being debated since the 1960s, when Friedman argued that ``there is much evidence that monetary changes have their effect only after a considerable lag and over a long period''\footnote{See Friedman, Milton. A Program for Monetary Stability. United States, Fordham University Press,1992.}. Habit formation not only causes consumers to adjust their consumption more slowly in response to monetary policy changes, but also acknowledges that past consumption influences current consumption decisions and utility. 
 \end{solution}
 
 
@@ -155,7 +159,7 @@ where $\rho \in (0,1)$, $z_{ss}$ is the steady-state level of the productivity s
         & K_{t+1}, C_t, N_t \geq 0.
     \end{alignat*}
 
-    This is easily shown to be equivalent to the earlier Social Planner Problem we set up earlier.
+    This is easily shown to be equivalent to the Social Planner Problem we set up earlier.
 
     Using this setup, the Lagrangian is
     \[
@@ -217,7 +221,7 @@ where $\rho \in (0,1)$, $z_{ss}$ is the steady-state level of the productivity s
         I_{ss} &= \delta K_{ss} \\
         N_{ss} &= \left(\frac{r_{ss}}{\alpha z_{ss}}\right)^{\frac{1}{1-\alpha}} K_{ss} \\
         w_{ss} &= \frac{\phi (1-\nu)}{1-\beta\nu} \left(\frac{r_{ss}}{\alpha} - \delta\right) K_{ss}\\
-        \lambda_{ss} &= \frac{1 - \beta\nu}{(1-\nu) C_{ss}}
+        \lambda_{ss} &= \frac{1 - \beta\nu}{(1-\nu) C_{ss}}.
     \end{align*}
 \end{solution}
 
@@ -261,7 +265,7 @@ where $\rho \in (0,1)$, $z_{ss}$ is the steady-state level of the productivity s
     \[
         \vec{x}_t = \begin{pmatrix}
             \hat{K}_t \\
-            \hat{C}_t
+            \hat{C}_{t-1}
         \end{pmatrix}, \vec{y}_t = \begin{pmatrix}
             \hat{Y}_t \\
             \hat{I}_t \\
@@ -281,14 +285,14 @@ where $\rho \in (0,1)$, $z_{ss}$ is the steady-state level of the productivity s
             0 & 0 \\
             0 & 0 \\
             K_{ss} & 0 \\
-            0 & 0 \\
+            0 & C_{ss} \\
             0 & 0
         \end{pmatrix}, \mathbf{B} = \begin{pmatrix}
             \alpha & 0 \\
             -1 & 0 \\
             0 & 0 \\
             -(1-\delta) K_{ss} & 0 \\
-            0 & C_{ss} \\
+            0 & 0 \\
             0 & 0
         \end{pmatrix}, \mathbf{C} = \begin{pmatrix}
             -1 & 0 & (1-\alpha) & 0 & 0 & 0 \\
@@ -300,7 +304,7 @@ where $\rho \in (0,1)$, $z_{ss}$ is the steady-state level of the productivity s
         \end{pmatrix}, \\
         &\mathbf{D} = \begin{pmatrix}
             1 \\ 0 \\ 0 \\ 0 \\ 0 \\ 0
-       \end{pmatrix}
+       \end{pmatrix}.
     \end{align*}
     in the first equation,
     \begin{align*}
@@ -315,10 +319,10 @@ where $\rho \in (0,1)$, $z_{ss}$ is the steady-state level of the productivity s
             0 & 0
         \end{pmatrix} \\
         &\mathbf{J} = \begin{pmatrix}
-            0 & 0 & 0 & 0 & 0 & -\lambda_{ss} \\
+            0 & 0 & 0 & 0 & 0 & 0 \\
             0 & 0 & 0 & \beta \lambda_{ss} r_{ss} & 0 & \beta \lambda_{ss} (r_{ss} + 1 - \delta)
         \end{pmatrix}, \mathbf{K} = \begin{pmatrix}
-            0 & 0 & 0 & 0 & 0 & 0 \\
+            0 & 0 & 0 & 0 & 0 & -\lambda_{ss} \\
             0 & 0 & 0 & 0 & 0 & -\lambda_{ss}
         \end{pmatrix}, \mathbf{L} = \begin{pmatrix}
             0 \\ 0
@@ -355,16 +359,16 @@ where $\rho \in (0,1)$, $z_{ss}$ is the steady-state level of the productivity s
     \begin{align*}
         \begin{pmatrix}
             \hat{K}_{t+1} \\
-            \hat{C}_{t+1}
+            \hat{C}_t
         \end{pmatrix} &= \begin{pmatrix}
-            0.77940762 & 0.05395422\\
-            0.04173628 & 0.81810069\\
+            0.7822968 & 0.0439841\\
+            0.05354872 & 0.81521151\\
           \end{pmatrix} \begin{pmatrix}
             \hat{K}_t \\
-            \hat{C}_t
+            \hat{C}_{t-1}
         \end{pmatrix} + \begin{pmatrix}
-            0.32412304\\
-            0.18995039\\
+            0.33392533\\
+            0.18167791\\
           \end{pmatrix} \begin{pmatrix}
             \hat{z}_t
         \end{pmatrix} \\
@@ -376,22 +380,22 @@ where $\rho \in (0,1)$, $z_{ss}$ is the steady-state level of the productivity s
             \hat{w}_t \\
             \hat{\lambda}_t
         \end{pmatrix} &= \begin{pmatrix}
-            -0.20564175 & 0.92147982\\
-            -1.20592382 & 0.53954217\\
-            -0.88381523 & 1.43981222\\
-            -1.20564175 & 0.92147982\\
-            0.67817348 & -0.5183324\\
-            -0.67817348 & 0.5183324\\
+            -0.15629768 & 0.75120096\\
+            -1.17703203 & 0.43984098\\
+            -0.80671512 & 1.17375149\\
+            -1.15629768 & 0.75120096\\
+            0.65041744 & -0.42255054\\
+            -0.65041744 & 0.42255054\\
           \end{pmatrix} \begin{pmatrix}
             \hat{K}_t \\
-            \hat{C}_t
+            \hat{C}_{t-1}
         \end{pmatrix} + \begin{pmatrix}
-            0.55271507\\
-            3.24123037\\
-            -0.6988827\\
-            0.55271507\\
-            1.25159777\\
-            -1.25159777\\
+            0.72012761\\
+            3.33925327\\
+            -0.43730062\\
+            0.72012761\\
+            1.15742822\\
+            -1.15742822\\
           \end{pmatrix} \begin{pmatrix}
             \hat{z}_t
         \end{pmatrix}.
@@ -399,20 +403,19 @@ where $\rho \in (0,1)$, $z_{ss}$ is the steady-state level of the productivity s
 
     This suggests that $\hat{K}_{t+1}$ and $\hat{C}_{t+1}$ are increasing with respect to $\hat{K}_t$ and $\hat{C}_t$ (since the coefficients are positive), but do regress closer to the steady state (since they are less than 1). They also are increasing with $\hat{z}_t$, suggesting that they'll behave procyclically.
 
-    Similarly, we find that $\hat{Y}_t$, $\hat{I}_t$, $\hat{r}_t$, and $\hat{w}_t$ behave procyclically, since the $\hat{z}_t$ coefficient is positive. $\hat{N}_t$ (and $\hat{\lambda}_t$) behave countercyclical, suggesting that when labor output (and output in general) is more efficient, households take advantage by having more leisure.
+    Similarly, we find that $\hat{Y}_t$, $\hat{I}_t$, $\hat{r}_t$, and $\hat{w}_t$ behave procyclically, since the $\hat{z}_t$ coefficient is positive. $\hat{N}_t$ (and $\hat{\lambda}_t$) behaves countercyclicaly, suggesting that when labor output (and output in general) is more efficient, households take advantage by taking more leisure.
 \end{solution}
-
 
 \begin{exercise}
     Use your answer to Exercise 1.7 to plot the impulse-response functions of output, consumption, hours worked, and investment in response to a TFP shock. Are TFP shocks still consistent with the business cycle facts? \emph{Hint}: strictly speaking, you don't need Python to answer this question. [10]
 \end{exercise}
 
 \begin{solution}
-    I got the below figure.
+    In real world observed data, the economic variables we are interested in are procyclical. In our model, however, TFP shocks are not consistent with these facts as employment behaves countercyclically. It makes sense that employment behaves this way because when there is a TFP shock, consuming more lowers future utility because of the inclusion of past consumption in the utility function. Hence, households intentionally choose increased leisure over increased consumption in the current period so future utility gets impacted less.
 
     \begin{figure}[H]
         \centering
-        \includegraphics[width=\textwidth]{graphs/nu=0.85.pdf}
+        \includegraphics[width=0.7\textwidth]{./graphs/nu=0.85.pdf}
     \end{figure}
 \end{solution}
 
@@ -422,7 +425,24 @@ where $\rho \in (0,1)$, $z_{ss}$ is the steady-state level of the productivity s
 \end{exercise}
 
 \begin{solution}
-    TBD
+    In a setting where $\nu = 0$, TFP shocks have varying effects on our economic variables that differ to those observed with a higher value for $\nu$. For example, with $\nu = 0$, output, employment and consumption have larger deviations from the steady state, yet they have a similar persistence compared to a specification where $\nu = 0.85$. 
+    
+    More specifically, when habit formation is zero, a TFP shock increases output by a larger fraction compared to a setting where there exists habit formation, explained by the fact that increased consumption, which then increases output, doesn't negatively affect future utility like it does with habit formation.  
+    Employment behaves procyclically when habit formation is zero. This is because individuals value the consumption from larger working hours more than leisure compared to a setting where there exists habit formation. When we include habit formation, the deviation from the steady state is negative, in line with our argument that people want to avoid the negative utility from consuming more today. 
+
+    Consumption increases by a higher value following a TFP shock in a setting where $\nu = 0$, compared to a setting where habit formation exist. Habit formation makes past consumption decrease current utility, so it makes sense that under habit formation, individuals won't consume as much in the present to protect their future consumption and utility. 
+    
+    Capital stock, investment, capital rate, and wages behaves very similarly in both scenarios. 
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.7\textwidth]{./graphs/nu=0.pdf}
+    \end{figure}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.7\textwidth]{./graphs/nu_vs_no_nu.pdf}
+    \end{figure}
 \end{solution}
 
 
@@ -476,7 +496,7 @@ which becomes
     Y_{ss} = \frac{r_{ss}}{\alpha} K_{ss}.
 \]
 
-Plugging the expression for $Y_{ss}$ and $z_{ss} = 1$ into \ref{eq:ss1} gets
+Plugging the expression for $Y_{ss}$ into \ref{eq:ss1} gets
 \[
     \frac{r_{ss}}{\alpha} K_{ss} = z_{ss} K_{ss}^\alpha N_{ss}^{1-\alpha}.
 \]
@@ -484,7 +504,7 @@ Dividing this by $K_{ss}^\alpha$ gets
 \[
     \frac{r_{ss}}{\alpha z_{ss}} K_{ss}^{1-\alpha} = N_{ss}^{1-\alpha},
 \]
-which when raised to the $\frac{1}{1-\alpha}$ power gets
+which when raised to the $\frac{1}{1-\alpha}$ gets
 \[
     N_{ss} = \left(\frac{r_{ss}}{\alpha z_{ss}}\right)^{\frac{1}{1-\alpha}} K_{ss}.
 \]
@@ -577,11 +597,11 @@ Canceling \ref{eq:ss4} gets
 
 \ref{eq:ll5} becomes
 \[
-    Y_ss (1 + \hat{Y}_t) = C_{ss} (1 + \hat{C}_t) + I_{ss} (1 + \hat{I}_t),
+    Y_{ss} (1 + \hat{Y}_t) = C_{ss} (1 + \hat{C}_t) + I_{ss} (1 + \hat{I}_t),
 \]
 which when expanded is
 \[
-    Y_ss + Y_{ss} \hat{Y}_t = C_{ss} + C_{ss} \hat{C}_t + I_{ss} + I_{ss} \hat{I}_t.
+    Y_{ss} + Y_{ss} \hat{Y}_t = C_{ss} + C_{ss} \hat{C}_t + I_{ss} + I_{ss} \hat{I}_t.
 \]
 Canceling \ref{eq:ss5} gets
 \[
@@ -696,21 +716,21 @@ Therefore, it becomes
         0 & 0 \\
         0 & 0 \\
         K_{ss} & 0 \\
-        0 & 0 \\
+        0 & C_{ss} \\
         0 & 0
     \end{pmatrix} \begin{pmatrix}
         \hat{K}_{t+1} \\
-        \hat{C}_{t+1}
+        \hat{C}_t
     \end{pmatrix} + \begin{pmatrix}
         \alpha & 0 \\
         -1 & 0 \\
         0 & 0 \\
         -(1-\delta) K_{ss} & 0 \\
-        0 & C_{ss} \\
+        0 & 0 \\
         0 & 0
     \end{pmatrix} \begin{pmatrix}
         \hat{K}_t \\
-        \hat{C}_t
+        \hat{C}_{t-1}
     \end{pmatrix} \\
     &+ \begin{pmatrix}
         -1 & 0 & (1-\alpha) & 0 & 0 & 0 \\
@@ -739,14 +759,14 @@ Thus,
         0 & 0 \\
         0 & 0 \\
         K_{ss} & 0 \\
-        0 & 0 \\
+        0 & C_{ss} \\
         0 & 0
     \end{pmatrix}, \mathbf{B} = \begin{pmatrix}
         \alpha & 0 \\
         -1 & 0 \\
         0 & 0 \\
         -(1-\delta) K_{ss} & 0 \\
-        0 & C_{ss} \\
+        0 & 0 \\
         0 & 0
     \end{pmatrix}, \mathbf{C} = \begin{pmatrix}
         -1 & 0 & (1-\alpha) & 0 & 0 & 0 \\
@@ -765,9 +785,9 @@ The second matrix equation,
 \[
     \vec 0 = \mathbb{E} \left[ \mathbf{F} \vec{x}_{t+2} + \mathbf{G} \vec{x}_{t+1} + \mathbf{H} \vec{x}_t + \mathbf{J} \vec{y}_{t+1} + \mathbf{K} \vec{y}_t + \mathbf{L} \vec{z}_{t+1} + \mathbf{M} \vec{z}_t \right],
 \]
-will include the equations\footnote{The time is shifted one period forward from the log-linearized version in the first one.}
+will include the equations
 \begin{align*}
-    \lambda_{ss} \hat{\lambda}_{t+1} &= \frac{\nu}{(1 - \nu)^2 C_{ss}} \hat{C}_t + \frac{\beta \nu}{(1 - \nu)^2 C_{ss}} \hat{C}_{t+2} - \frac{1 + \beta \nu^2}{(1 - \nu)^2 C_{ss}} \hat{C}_{t+1} \\
+    \lambda_{ss} \hat{\lambda}_t &= \frac{\nu}{(1 - \nu)^2 C_{ss}} \hat{C}_{t-1} + \frac{\beta \nu}{(1 - \nu)^2 C_{ss}} \hat{C}_{t+1} - \frac{1 + \beta \nu^2}{(1 - \nu)^2 C_{ss}} \hat{C}_t \\
     \lambda_{ss} \hat{\lambda}_t &= \beta \lambda_{ss} (r_{ss} + 1 - \delta) \hat{\lambda}_{t+1} + \beta \lambda_{ss} r_{ss} \hat{r}_{t+1}.
 \end{align*}
 Therefore, it becomes
@@ -779,23 +799,23 @@ Therefore, it becomes
         0 & 0
     \end{pmatrix} \begin{pmatrix}
         \hat{K}_{t+2} \\
-        \hat{C}_{t+2}
+        \hat{C}_{t+1}
     \end{pmatrix} + \begin{pmatrix}
         0 & -\frac{1 + \beta \nu^2}{(1 - \nu)^2 C_{ss}} \\
         0 & 0
     \end{pmatrix} \begin{pmatrix}
         \hat{K}_{t+1} \\
-        \hat{C}_{t+1}
+        \hat{C}_t
     \end{pmatrix} + \begin{pmatrix}
         0 & \frac{\nu}{(1 - \nu)^2 C_{ss}} \\
         0 & 0
     \end{pmatrix} \begin{pmatrix}
         \hat{K}_t \\
-        \hat{C}_t
+        \hat{C}_{t-1}
     \end{pmatrix}
     \right. \\
     &+ \begin{pmatrix}
-        0 & 0 & 0 & 0 & 0 & -\lambda_{ss} \\
+        0 & 0 & 0 & 0 & 0 & 0 \\
         0 & 0 & 0 & \beta \lambda_{ss} r_{ss} & 0 & \beta \lambda_{ss} (r_{ss} + 1 - \delta)
     \end{pmatrix} \begin{pmatrix}
         \hat{Y}_{t+1} \\
@@ -805,7 +825,7 @@ Therefore, it becomes
         \hat{w}_{t+1} \\
         \hat{\lambda}_{t+1}
     \end{pmatrix} + \begin{pmatrix}
-        0 & 0 & 0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0 & 0 & -\lambda_{ss} \\
         0 & 0 & 0 & 0 & 0 & -\lambda_{ss}
     \end{pmatrix} \begin{pmatrix}
         \hat{Y}_t \\
@@ -838,10 +858,10 @@ Thus,
         0 & 0
     \end{pmatrix} \\
     &\mathbf{J} = \begin{pmatrix}
-        0 & 0 & 0 & 0 & 0 & -\lambda_{ss} \\
+        0 & 0 & 0 & 0 & 0 & 0 \\
         0 & 0 & 0 & \beta \lambda_{ss} r_{ss} & 0 & \beta \lambda_{ss} (r_{ss} + 1 - \delta)
     \end{pmatrix}, \mathbf{K} = \begin{pmatrix}
-        0 & 0 & 0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0 & 0 & -\lambda_{ss} \\
         0 & 0 & 0 & 0 & 0 & -\lambda_{ss}
     \end{pmatrix}, \mathbf{L} = \begin{pmatrix}
         0 \\ 0
